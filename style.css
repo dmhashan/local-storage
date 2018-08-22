@@ -3,7 +3,9 @@
 }
 
 body {
-    background-image: url('https://s3.amazonaws.com/pikpsdnw/wp-content/uploads/2018/03/09112251/Free-Flyers-Background-PNG-999x999.png');
-    background-repeat: no-repeat;
-    background-size: auto;
-}
+    background: url('https://mediaplanet.azureedge.net/images/881/91969/kastration.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }

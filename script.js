@@ -6,11 +6,14 @@ var todoList = document.getElementById('todoList');
           todoList.innerHTML = "";
           tasks = JSON.parse(localStorage["tasks"] || "[]");
           tasks.forEach(printli);
+        }else {
+          tasks = [];
+          todoList.innerHTML = '<li class="list-group-item">No any records</li>';
         }
       }
 
       function printli(task, index) {
-        todoList.innerHTML += "<li class='list-group-item list-group-item-action'>" + task["details"] + "<button type='button' class='close' onclick='removeEvent(" + index + ")'><span aria-hidden='true'>&times;</span></button><br><small> | " + task["dateAndTime"] + "</small></li>";
+        todoList.innerHTML += "<li class='list-group-item list-group-item-action'>" + task["details"] + "<button type='button' class='btn btn-link' onclick='updateEvent(" + index + ")'>Edit</button><button type='button' class='close' onclick='removeEvent(" + index + ")'><span aria-hidden='true'>&times;</span></button><br><small> | " + task["dateAndTime"] + "</small></li>";
       }
 
       function addEvent() {
@@ -36,10 +39,23 @@ var todoList = document.getElementById('todoList');
           tasks.splice(id, 1);
           localStorage["tasks"] = JSON.stringify(tasks);
           loadMemory();
-        }else{
-          alert("The event is in safe");
         }
       } 
+
+      function updateEvent(id) {
+        var updatedEvent = prompt("Please enter update details", tasks[id].details);
+        tasks[id].details = updatedEvent;
+        localStorage["tasks"] = JSON.stringify(tasks);
+        loadMemory();
+      } 
+
+      function clearall(){
+        let confimation = confirm("Do you want to clear all events?");
+        if(confimation) {
+          localStorage.clear();
+          loadMemory();
+        }
+      }
 
       function handleEnter(e){
           var keycode = (e.keyCode ? e.keyCode : e.which);
